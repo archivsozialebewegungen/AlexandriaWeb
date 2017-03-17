@@ -1,0 +1,28 @@
+{% extends "alex/base.html" %}
+{% load alex_tags %}
+{% block content %}
+	<div class="panel panel-default">
+		<div class="panel-heading">{{ event.daterange }}</div>
+  		<div class="panel-body">{{ event.description }}</div>
+  	</div>
+	{% referenced_events referenced_events %}
+	<div class="panel panel-default">
+		<div class="panel-heading">Verknüpfte Dokumente</div>
+  		<div class="panel-body">
+  			{% for row in document_rows %}
+  				<div class="row">
+  					{% for document in row %}
+  					<div class="col-xs-12 col-md-4">
+  						<b><a href="showdocument?document_id={{ document.id }}">
+  								Dokument {{ document.id }}:</b>
+  						</a> </b>
+  						{{ document.description }}
+  					</div>
+	  				{% endfor %}
+	  			</div>
+  			{% endfor %}
+  			</div>
+  		</div>
+  	</div>
+
+{% endblock %}

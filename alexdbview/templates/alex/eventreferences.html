@@ -1,0 +1,21 @@
+<div class="row">
+  	<div class="col-xs-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">Verknüpfte Ereignisse</div>
+		  	<div class="panel-body">
+  				{% for row in event_rows %}
+  				<div class="row">
+  					{% for event in row %}
+  					<div class="col-xs-12 col-md-4">
+  						<b><a href="showevent?event_id={{ event.id }}">
+  							{{ event.daterange }}:</a> </b>
+  							{{ event.description }}
+  					</div>
+	  				{% endfor %}
+	  			</div>
+  				{% endfor %}
+  			</div>
+  		</div>
+  	</div>
+</div>
+  	

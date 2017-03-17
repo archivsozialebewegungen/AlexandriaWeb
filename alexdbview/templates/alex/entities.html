@@ -1,0 +1,49 @@
+{% extends "alex/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>{{ title }}</h1>
+<form action="{{ request.path }}" method="post">
+   	{% csrf_token %}
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-6">
+			<div class="row">
+   			{% crispy form form.basic_helper %}
+   			</div>
+   		</div>
+		<div class="col-xs-12 col-sm-6 col-md-6">
+			<div class="row">
+   			{% crispy form form.entity_helper %}
+   			</div>
+   		</div>
+   	</div>
+   	{% block searchsubmit %}{% endblock %}
+{% if current_page %}
+<h2>Suchergebnis</h2>
+<div class="row">
+	<div class="col-xs-5 vcenter">
+		{% if number_of_pages == 0 %}
+		<span>Keine Datensätze gefunden.</span>
+		{% endif %}
+		{% if number_of_pages > 0 %}
+		<span>Seite {{ current_page }} von {{ number_of_pages }}</span>
+		{% endif %}
+	</div>
+	<div class="col-xs-7">
+		<span class="pull-right">
+			{% if current_page > 1 %}
+			<input name="continue_search_backward" class="btn btn-small" type="submit" value="Zurück" />
+ 			{% endif %}
+			{% if current_page < number_of_pages %}
+			<input name="continue_search_forward" class="btn btn-small" type="submit" value="Weiter" />
+			{% endif %}
+		</span>
+	</div>
+</div>
+<div class="row voffset2">
+	<div class="col-xs-12">
+		{% block entitytable %}{% endblock %}
+	</div>
+</div>
+{% endif %}
+</form>
+{% endblock %}

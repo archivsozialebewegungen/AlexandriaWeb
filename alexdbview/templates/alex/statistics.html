@@ -1,0 +1,22 @@
+{% extends "alex/base.html" %}
+{% block content %}
+	<h1>Dokumentstatistik</h1>
+	<table class="table table-striped">
+	<tbody>
+		<tr>
+			<td>Anzahl Dokumente:</td>
+			<td>{{ docstats.number_of_documents }}</td>
+		</tr>
+		<tr>
+			<td>Anzahl Dokumentdateien:</td>
+			<td>{{ docstats.number_of_files }}</td>
+		</tr>
+		{% for file_type, number in docstats.number_of_files_by_type.items %}
+			<tr>
+				<td>{{ file_type }}-Dateien:</td>
+				<td>{{ number }}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

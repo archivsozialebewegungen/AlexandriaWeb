@@ -1,0 +1,40 @@
+{% extends "alex/base.html" %}
+{% load staticfiles %}
+{% block headerstuff %}
+		<link
+			rel="stylesheet" 
+			href="{% static "bootstrap-treeview-1.2.0/dist/bootstrap-treeview.min.css" %}">
+		<script src="{% static "bootstrap-treeview-1.2.0/dist/bootstrap-treeview.min.js" %}"></script>
+	<script>
+	function getTree() {
+  		return {{ treedata|safe }};
+	}
+	</script>
+{% endblock %}
+{% block content %}
+	<h1>Systematik</h1>
+	<div id="tree"></div>
+	<form id="emptyform" method="POST", action="documents">
+	   	{% csrf_token %}
+	   	<input type="hidden" name="new_search"/>
+	   	<input type="hidden" name="combine_mode" value="or"/>
+	</form>
+{% endblock %}
+{% block documentready %}
+	$('#tree').treeview({data: getTree()});
+	$('#tree').on('nodeSelected', function(event, data) {
+
+		console.log('Now searching for ' + data.signature);
+
+	    var form = document.getElementById("emptyform");
+
+    	var locationField = document.createElement("input");
+    	locationField.setAttribute("type", "hidden");
+    	locationField.setAttribute("name", "location_field");
+    	locationField.setAttribute("value", data.signature);
+    	form.appendChild(locationField);
+
+    	form.submit();
+
+	});
+{% endblock %}

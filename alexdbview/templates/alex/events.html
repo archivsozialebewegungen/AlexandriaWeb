@@ -1,0 +1,30 @@
+{% extends "alex/entities.html" %}
+{% load staticfiles %}
+{% block headerstuff %}
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/locales/bootstrap-datepicker.de.min.js"></script>
+{% endblock %}
+{% block searchsubmit %}
+    <div class="row">
+    	<div class="col-xs-12 col-sm-4">
+    		<input name="new_search" class="btn btn-normal" type="submit" value="Suche" />
+    	</div>
+    </div>
+{% endblock %}
+{% block entitytable %}
+<table class="table table-striped">
+	<tbody>
+		{% for event in entities %}
+		<tr>
+			<td>
+				<a href="showevent?event_id={{ event.id }}">
+					{{event.daterange }}
+				</a>
+			</td>
+			<td>{{ event.description }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

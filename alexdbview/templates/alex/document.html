@@ -1,0 +1,105 @@
+{% extends "alex/base.html" %}
+{% load alex_tags %}
+{% block modal %}
+<div class="modal fade" id="documentModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Dokumentenanzeige</h4>
+      </div>
+      <div class="modal-body" style="overflow: scroll;">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+
+function fetchDocumentDisplay(modal, fileid) {
+  $.getJSON("documentdisplay/" + fileid, null, function(json){
+		modal.find('.modal-title').text('Datei ' + fileid);
+  		modal.find('.modal-body > #modalbody').remove();
+  		if (json.success) {
+    		display = $(json.html);
+    	}
+    	else {
+    		display = $('<div id="modalbody"><h1>Die Dokumentdatei kann nicht dargestellt werden!</h1></div>')
+    	}
+    	modal.find('.modal-body').append(display)
+    }
+  );
+}
+
+$('#documentModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var fileid = button.data('fileid') // Extract info from data-* attributes
+  fetchDocumentDisplay($(this), fileid)
+})
+</script>
+{% endblock %}
+{% block content %}
+	<div class="row">
+		<div class="col-xs-12 col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">Dokument {{ document.id }}</div>
+  				<div class="panel-body">
+					{{ document.description }}
+  				</div>
+  			</div>
+  		</div>
+		<div class="col-xs-12 col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">Informationen</div>
+  				<div class="panel-body">
+  					<div class="row">
+  						<div class="col-xs-7">
+  							<b>Dokumenttyp</b>
+  						</div>
+  						<div class="col-xs-5">
+  							{{ document.document_type }}
+  						</div>
+  					</div>
+  					<div class="row">
+  						<div class="col-xs-7">
+  							<b>Anzahl Dateien</b>
+  						</div>
+  						<div class="col-xs-5">
+  							{{ document.number_of_files }}
+  						</div>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  		<div class="col-xs-12 col-md-2">
+  			<div class="row">
+  				<div class="col-xs-12">
+  					<a class="btn btn-primary btn-block" target="_blank" href="pdfdownload?document_id={{document.id}}">Pdf-Download</a>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+	{% referenced_events events %}
+  	<div class="row">
+  		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">Dateivorschau</div>
+		  		<div class="panel-body">
+  					{% for row in graphic_file_rows %}
+  					<div class="row">
+  						{% for file_info in row %}
+  						<div class="col-xs-12 col-sm-6 col-md-3">
+			  				<a data-toggle="modal" data-target="#documentModal" data-fileid="{{ file_info.id }}">
+  								<img src="imagepreview/{{ file_info.id }}" alt="Dokumentdatei {{ file_info.id }}">
+  							</a>
+  						</div>
+	  					{% endfor %}
+	  				</div>
+  					{% endfor %}
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+{% endblock %}
