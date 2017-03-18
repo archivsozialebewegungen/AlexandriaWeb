@@ -6,6 +6,7 @@ python:
 # command to install dependencies
 install:
   - "git clone --depth 1 https://github.com/archivsozialebewegungen/AlexandriaBase.git"
+  - "git clone --depth 1 https://github.com/archivsozialebewegungen/AlexandriaPlugins.git"
   - "pip install -r AlexandriaBase/requirements.txt"
 # command to run tests
-script: PYTHONPATH=AlexandriaBase:AlexandriaBase/tests:$PYTHONPATH python testrunner.py
+script: PYTHONPATH=AlexandriaBase:AlexandriaPlugins:AlexandriaBase/tests:$PYTHONPATH python testrunner.py
