@@ -20,22 +20,10 @@ import logging
 from alexplugins.systematic.base import SystematicBasePluginModule
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-CONFIG_FILE = os.environ.get('ALEX_CONFIG')
-
-class WebModule(Module):
-    
-    def configure(self, binder):
-        
-        binder.bind(baseinjectorkeys.CONFIG_FILE_KEY, to=CONFIG_FILE)
-        binder.bind(baseinjectorkeys.CreatorProvider,
-                    ClassProvider(BasicCreatorProvider), scope=singleton)
-        
-    
 INJECTOR = Injector([AlexBaseModule(),
                      DaoModule(),
                      ServiceModule(),
                      SystematicBasePluginModule(),
-                     WebModule(),
                     ])
 CONFIG = INJECTOR.get(baseinjectorkeys.CONFIG_KEY)
 
