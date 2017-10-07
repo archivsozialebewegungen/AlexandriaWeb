@@ -3,7 +3,7 @@ from alexdbview.views import StatisticsView, DocumentsView, EventsView,\
     ShowDocumentView, ShowEventView, PdfDownloadView,\
     FilePreviewView, FileView, SystematicView, DocumentDisplayView
 from injector import Injector, Module, inject, ClassProvider, singleton,\
-    provides
+    provider
 from alexandriabase import AlexBaseModule, baseinjectorkeys
 from alexandriabase.daos import DaoModule
 from alexandriabase.services import ServiceModule

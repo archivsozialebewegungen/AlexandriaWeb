@@ -71,7 +71,7 @@ class StatisticsView(View):
         '''
         Collects some statistics from the database
         '''
-        dao = self.injector.get(baseinjectorkeys.DokumentDaoKey)
+        dao = self.injector.get(baseinjectorkeys.DOCUMENT_DAO_KEY)
         values = {
             'title': "Alexandria Statistiken",
             'docstats': dao.get_statistics(),
@@ -271,7 +271,7 @@ class EntityView(View):
     def __init__(self, injector):
         
         self.injector = injector
-        self.service = self.injector.get(baseinjectorkeys.EventServiceKey)
+        self.service = self.injector.get(baseinjectorkeys.EVENT_SERVICE_KEY)
         self.filter_builder = self.injector.get(baseinjectorkeys.EVENT_FILTER_EXPRESSION_BUILDER_KEY)
         self.template = None
         
@@ -346,7 +346,7 @@ class DocumentsView(EntityView):
         
         self.injector = injector
         self.template = 'alex/documents.html'
-        self.service = self.injector.get(baseinjectorkeys.DocumentServiceKey)
+        self.service = self.injector.get(baseinjectorkeys.DOCUMENT_SERVICE_KEY)
         self.document_type_service = self.injector.get(baseinjectorkeys.DOCUMENT_TYPE_SERVICE_KEY)
         config = self.injector.get(baseinjectorkeys.CONFIG_KEY)
         # The following crude syntax prevents eclipse from 
@@ -355,7 +355,7 @@ class DocumentsView(EntityView):
             self.create_filetype_choices(config) # @UndefinedVariable
         getattr(DocumentSearchForm, 'base_fields')['document_type_field'].choices = \
             self.create_document_type_choices() # @UndefinedVariable
-        self.filter_builder = self.injector.get(baseinjectorkeys.DocumentFilterExpressionBuilderKey)
+        self.filter_builder = self.injector.get(baseinjectorkeys.DOCUMENT_FILTER_EXPRESSION_BUILDER_KEY)
 
     def create_filetype_choices(self,config):
         choices = [('','')]
@@ -379,7 +379,7 @@ class EventsView(EntityView):
         
         self.injector = injector
         self.template = 'alex/events.html'
-        self.service = self.injector.get(baseinjectorkeys.EventServiceKey)
+        self.service = self.injector.get(baseinjectorkeys.EVENT_SERVICE_KEY)
         self.filter_builder = self.injector.get(baseinjectorkeys.EVENT_FILTER_EXPRESSION_BUILDER_KEY)
         
 class ShowDocumentView(View):
@@ -389,8 +389,8 @@ class ShowDocumentView(View):
     def __init__(self, injector):
         
         self.injector = injector
-        self.document_service = injector.get(baseinjectorkeys.DocumentServiceKey)
-        self.reference_service = injector.get(baseinjectorkeys.ReferenceServiceKey)
+        self.document_service = injector.get(baseinjectorkeys.DOCUMENT_SERVICE_KEY)
+        self.reference_service = injector.get(baseinjectorkeys.REFERENCE_SERVICE_KEY)
     
     def get(self, request):
         
@@ -423,8 +423,8 @@ class ShowEventView(View):
     def __init__(self, injector):
         
         self.injector = injector
-        self.event_service = injector.get(baseinjectorkeys.EventServiceKey)
-        self.reference_service = injector.get(baseinjectorkeys.ReferenceServiceKey)
+        self.event_service = injector.get(baseinjectorkeys.EVENT_SERVICE_KEY)
+        self.reference_service = injector.get(baseinjectorkeys.REFERENCE_SERVICE_KEY)
     
     def get(self, request):
         
@@ -448,7 +448,7 @@ class PdfDownloadView(View):
     def __init__(self, injector):
         
         self.injector = injector
-        self.document_service = injector.get(baseinjectorkeys.DocumentServiceKey)
+        self.document_service = injector.get(baseinjectorkeys.DOCUMENT_SERVICE_KEY)
     
     def get(self, request):
         
@@ -466,7 +466,7 @@ class FilePreviewView(View):
     def __init__(self, injector):
         
         self.injector = injector
-        self.document_service = injector.get(baseinjectorkeys.DocumentServiceKey)
+        self.document_service = injector.get(baseinjectorkeys.DOCUMENT_SERVICE_KEY)
         self.document_file_manager = injector.get(baseinjectorkeys.DOCUMENT_FILE_MANAGER_KEY)
     
     def get(self, request, file_id):
@@ -484,7 +484,7 @@ class FileView(View):
     def __init__(self, injector):
         
         self.injector = injector
-        self.document_service = injector.get(baseinjectorkeys.DocumentServiceKey)
+        self.document_service = injector.get(baseinjectorkeys.DOCUMENT_SERVICE_KEY)
         self.document_file_manager = injector.get(baseinjectorkeys.DOCUMENT_FILE_MANAGER_KEY)
         self.handlers = {'default': self.image_view,
                          'mp4': self.stream_view}
@@ -522,7 +522,7 @@ class DocumentDisplayView(View):
     def __init__(self, injector):
         
         self.injector = injector
-        self.document_service = injector.get(baseinjectorkeys.DocumentServiceKey)
+        self.document_service = injector.get(baseinjectorkeys.DOCUMENT_SERVICE_KEY)
         self.document_file_manager = injector.get(baseinjectorkeys.DOCUMENT_FILE_MANAGER_KEY)
         self.handlers = {'txt': self.text_handler,
                          'mp4': self.video_handler,

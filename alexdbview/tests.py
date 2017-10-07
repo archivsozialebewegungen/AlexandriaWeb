@@ -12,14 +12,14 @@ class TestAlexandriaWebPage(TestCase):
     
     def setUp(self):
         
-        dbengine = INJECTOR.get(baseinjectorkeys.DBEngineKey)
+        dbengine = INJECTOR.get(baseinjectorkeys.DB_ENGINE_KEY)
         setup_database_schema(dbengine)
         load_table_data(tables, dbengine)
         self.client = Client()
 
     def tearDown(self):
         
-        dbengine = INJECTOR.get(baseinjectorkeys.DBEngineKey)
+        dbengine = INJECTOR.get(baseinjectorkeys.DB_ENGINE_KEY)
         drop_database_schema(dbengine)
 
     def testLoadStatistics(self):
