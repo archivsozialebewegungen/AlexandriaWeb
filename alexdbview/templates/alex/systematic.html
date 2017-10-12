@@ -3,8 +3,8 @@
 {% block headerstuff %}
 		<link
 			rel="stylesheet" 
-			href="{% static "bootstrap-treeview-1.2.0/public/css/bootstrap-treeview.min.css" %}">
-		<script src="{% static "bootstrap-treeview-1.2.0/public/js/bootstrap-treeview.min.js" %}"></script>
+			href="{% static "bootstrap-treeview-1.2.0/public/css/bootstrap-treeview.css" %}">
+		<script src="{% static "bootstrap-treeview-1.2.0/public/js/bootstrap-treeview.js" %}"></script>
 	<script>
 	function getTree() {
   		return {{ treedata|safe }};
