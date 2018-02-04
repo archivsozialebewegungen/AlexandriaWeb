@@ -177,21 +177,21 @@ class SearchForm(forms.Form):
     
 class DocumentSearchForm(SearchForm):
     
-    location_field = forms.CharField(label='Standort:', max_length=40, required=False)
+    signature_field = forms.CharField(label='Standort:', max_length=40, required=False)
     filetype_field = forms.ChoiceField(label='Dateityp:', initial='', choices=[('',''),('txt','txt'),('jpg','jpg')], required=False)
     document_type_field = forms.ChoiceField(label='Dokumenttyp:', initial='', choices=[('',''),('kommt noch','kommt noch'),('weiteres','weiteres')], required=False)
 
     def __init__(self, *params, **kw):
         super().__init__(*params, **kw)
         self.entity_helper.layout = Layout(
-            'location_field',
+            'signature_field',
             'filetype_field',
             'document_type_field'
         )
 
-    def _get_location(self):
+    def _get_signature(self):
         try:
-            return self.cleaned_data['location_field']
+            return self.cleaned_data['signature_field']
         except KeyError:
             return None
 
@@ -207,7 +207,7 @@ class DocumentSearchForm(SearchForm):
         except KeyError:
             return None
 
-    location = property(_get_location)
+    signature = property(_get_signature)
     filetype = property(_get_filetype)
     document_type = property(_get_document_type)
 

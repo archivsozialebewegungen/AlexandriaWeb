@@ -54,7 +54,7 @@ class TestAlexandriaWebPage(TestCase):
                 'searchterm_field2': '',
                 'searchterm_field3': '',
                 'combine_mode': 'and',
-                'location_field': '',
+                'signature_field': '',
                 'filetype_field': '',
                 'document_type_field': '',
                 'new_search': 'Suche',
