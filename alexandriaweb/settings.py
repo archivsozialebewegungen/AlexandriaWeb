@@ -10,13 +10,10 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import socket
 from alexandriabase import baseinjectorkeys, AlexBaseModule
-from injector import ClassProvider, singleton, Injector, Module
-from alexandriabase.daos.basiccreatorprovider import BasicCreatorProvider
+from injector import Injector
 from alexandriabase.daos import DaoModule
 from alexandriabase.services import ServiceModule
-import logging
 from alexplugins.systematic.base import SystematicBasePluginModule
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 

@@ -10,7 +10,7 @@ from alexandriabase.services import ServiceModule
 from alexdbview import webinjectorkeys
 import os
 import sys
-from alexandriabase.daos.basiccreatorprovider import BasicCreatorProvider
+from alexandriabase.daos import BasicCreatorProvider
 import logging
 from alexandriaweb.settings import INJECTOR, CONFIG
 import socket

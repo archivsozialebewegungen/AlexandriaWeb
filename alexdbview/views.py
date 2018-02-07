@@ -3,8 +3,6 @@ The views for the basic Alexandria web application
 '''
 from django import forms
 from django.http import HttpResponse
-from django.template import loader
-from django.template.context import RequestContext
 from django.views.generic.base import View
 from alexandriabase import baseinjectorkeys
 from alexandriabase.domain import AlexDate
@@ -12,9 +10,7 @@ import datetime
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout
 import json
-from alexandriabase.services.document_pdf_generation_service import TextObject
-import traceback
-import sys
+from alexandriabase.services import TextObject
 from alexandriabase.base_exceptions import NoSuchEntityException
 from django.http.response import Http404
 from alexplugins.systematic import SYSTEMATIC_DAO_KEY
