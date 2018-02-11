@@ -203,10 +203,17 @@ class DocumentSearchForm(SearchForm):
         except KeyError:
             return None
 
+    def _get_missing_event_link(self):
+        '''
+        Not yet implemented for web gui
+        '''
+        return False
+    
     signature = property(_get_signature)
     filetype = property(_get_filetype)
     document_type = property(_get_document_type)
-
+    missing_event_link = property(_get_missing_event_link)
+    
 class EventSearchForm(SearchForm):
     
     date_field_attrs = {'data-date-language': 'de',

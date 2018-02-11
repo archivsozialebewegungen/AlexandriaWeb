@@ -6,7 +6,6 @@ Created on 17.03.2017
 import os
 from django.core.management import execute_from_command_line
 from alex_test_utils import TestEnvironment
-import sys
 
 if __name__ == '__main__':
     
