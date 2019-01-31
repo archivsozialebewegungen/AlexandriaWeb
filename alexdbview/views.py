@@ -67,10 +67,12 @@ class StatisticsView(View):
         '''
         Collects some statistics from the database
         '''
-        dao = self.injector.get(baseinjectorkeys.DOCUMENT_DAO_KEY)
+        event_dao = self.injector.get(baseinjectorkeys.EVENT_DAO_KEY)
+        document_dao = self.injector.get(baseinjectorkeys.DOCUMENT_DAO_KEY)
         values = {
             'title': "Alexandria Statistiken",
-            'docstats': dao.get_statistics(),
+            'eventstats': event_dao.get_statistics(),
+            'docstats': document_dao.get_statistics(),
         }
         return HttpResponse(render(request, 'alex/statistics.html', values))
 

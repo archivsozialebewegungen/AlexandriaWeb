@@ -1,8 +1,12 @@
 {% extends "alex/base.html" %}
 {% block content %}
-	<h1>Dokumentstatistik</h1>
+	<h1>Alexandria Statistik</h1>
 	<table class="table table-striped">
 	<tbody>
+		<tr>
+			<td>Anzahl Ereignisse:</td>
+			<td>{{ eventstats.number_of_events }}</td>
+		</tr>
 		<tr>
 			<td>Anzahl Dokumente:</td>
 			<td>{{ docstats.number_of_documents }}</td>
