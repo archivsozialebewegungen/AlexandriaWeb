@@ -33,7 +33,7 @@ SECRET_KEY = 'e#%wreqqxuaxka#@phb95s8-yo@@s5-2g85vfq3evr!sc($8ii'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'mossmann']
+ALLOWED_HOSTS = ['localhost', 'mossmann', '127.0.0.1']
 
 
 # Application definition
@@ -49,12 +49,11 @@ INSTALLED_APPS = (
     'crispy_forms'
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
