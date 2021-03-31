@@ -13,6 +13,21 @@
 {% endblock %}
 {% block content %}
 	<h1>Systematik</h1>
+	<div>
+      <h2>Suche</h2>
+	  <div class="form-group">
+    	<label for="input-search" class="sr-only">Baum durchsuchen:</label>
+        <input type="input" class="form-control" id="input-search" placeholder="Suchbegriff eingeben..." value="">
+      </div>
+      <button type="button" class="btn btn-success" id="btn-search">Suchen</button>
+      <button type="button" class="btn btn-default" id="btn-clear-search">Zurücksetzen</button>
+      <!-- </form> -->
+    </div>
+    <div>
+          <h2>Suchergebnisse</h2>
+          <div id="search-output"></div>
+    </div>
+	<h2>Systematik</h2>
 	<div id="tree"></div>
 	<form id="emptyform" method="POST", action="documents">
 	   	{% csrf_token %}
@@ -37,4 +52,27 @@
     	form.submit();
 
 	});
+     
+     $('#btn-search').on('click', function(e) {
+       var pattern = $('#input-search').val();
+       var options = {
+         ignoreCase: true,
+         exactMatch: false,
+         revealResults: true
+       };
+       var results = $('#tree').treeview('search', [ pattern, options ]);
+
+       var output = '<p>' + results.length + ' Treffer gefunden</p>';
+       $.each(results, function (index, result) {
+         output += '<p>- ' + result.text + '</p>';
+       });
+       $('#search-output').html(output);
+     });
+
+     $('#btn-clear-search').on('click', function (e) {
+       $('#tree').treeview('clearSearch');
+       $('#input-search').val('');
+       $('#search-output').html('');
+     });
+     
 {% endblock %}
