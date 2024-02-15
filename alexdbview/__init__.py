@@ -1,4 +1,4 @@
-from django.conf.urls import url  # @UnresolvedImport
+from django.urls import re_path  # @UnresolvedImport
 from alexdbview.views import StatisticsView, DocumentsView, EventsView,\
     ShowDocumentView, ShowEventView, PdfDownloadView,\
     FilePreviewView, FileView, SystematicView, DocumentDisplayView
@@ -24,14 +24,14 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 urls = [
-    url(r'^statistics$', StatisticsView.as_view(injector=INJECTOR)),
-    url(r'^documents$', DocumentsView.as_view(injector=INJECTOR)),
-    url(r'^events$', EventsView.as_view(injector=INJECTOR)),
-    url(r'^systematic$', SystematicView.as_view(injector=INJECTOR)),
-    url(r'^showdocument$', ShowDocumentView.as_view(injector=INJECTOR)),
-    url(r'^showevent$', ShowEventView.as_view(injector=INJECTOR)),
-    url(r'^pdfdownload$', PdfDownloadView.as_view(injector=INJECTOR)),
-    url(r'^imagepreview/(?P<file_id>\d+)$', FilePreviewView.as_view(injector=INJECTOR)),
-    url(r'^imageview/(?P<file_id>\d+)$', FileView.as_view(injector=INJECTOR)),
-    url(r'^documentdisplay/(?P<file_id>\d+)$', DocumentDisplayView.as_view(injector=INJECTOR)),
+    re_path(r'^statistics$', StatisticsView.as_view(injector=INJECTOR)),
+    re_path(r'^documents$', DocumentsView.as_view(injector=INJECTOR)),
+    re_path(r'^events$', EventsView.as_view(injector=INJECTOR)),
+    re_path(r'^systematic$', SystematicView.as_view(injector=INJECTOR)),
+    re_path(r'^showdocument$', ShowDocumentView.as_view(injector=INJECTOR)),
+    re_path(r'^showevent$', ShowEventView.as_view(injector=INJECTOR)),
+    re_path(r'^pdfdownload$', PdfDownloadView.as_view(injector=INJECTOR)),
+    re_path(r'^imagepreview/(?P<file_id>\d+)$', FilePreviewView.as_view(injector=INJECTOR)),
+    re_path(r'^imageview/(?P<file_id>\d+)$', FileView.as_view(injector=INJECTOR)),
+    re_path(r'^documentdisplay/(?P<file_id>\d+)$', DocumentDisplayView.as_view(injector=INJECTOR)),
 ]
