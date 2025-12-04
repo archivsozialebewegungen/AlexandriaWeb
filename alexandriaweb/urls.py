@@ -1,4 +1,4 @@
-from django.conf.urls import include, url  # @UnresolvedImport
+from django.urls import include, re_path  # @UnresolvedImport
 from django.contrib import admin  # @UnresolvedImport
 import alexdbview
 
@@ -7,6 +7,6 @@ urlpatterns = [
     # url(r'^$', 'alexandriaweb.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', admin.site.urls),
-    url(r'^alexandria/', include(alexdbview.urls)),
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^alexandria/', include(alexdbview.urls)),
 ]

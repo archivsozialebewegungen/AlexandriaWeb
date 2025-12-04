@@ -33,7 +33,7 @@ SECRET_KEY = 'e#%wreqqxuaxka#@phb95s8-yo@@s5-2g85vfq3evr!sc($8ii'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'mossmann', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', 'vogt', '127.0.0.1']
 
 
 # Application definition
@@ -46,8 +46,14 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'alexdbview',
-    'crispy_forms'
+    'crispy_forms',
+    'crispy_bootstrap3'
 )
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap3"
+
+CRISPY_TEMPLATE_PACK = "bootstrap3"
+
 
 MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
